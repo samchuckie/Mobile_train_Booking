@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "332910237697",
+    "firebase_url": "https://okeyotest.firebaseio.com",
+    "project_id": "okeyotest",
+    "storage_bucket": "okeyotest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332910237697:android:5f9d9bfc87cc5a19",
+        "android_client_info": {
+          "package_name": "com.example.asce.databasetests"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332910237697-dfduls743fok0tbea3qc2s0sa8a3k7lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8kUG0Jy_InmUq16oND4T6j8g5wY8lv8s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
