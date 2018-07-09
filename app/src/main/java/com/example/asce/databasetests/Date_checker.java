@@ -1,53 +1,37 @@
 package com.example.asce.databasetests;
 
-import android.app.DatePickerDialog;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class Date_checker extends AppCompatActivity {
     DatePicker datePicker;
     DatabaseReference firebaseDatabase;
+    int mYear , mMonth , mDay,price;
+    String pickup ,destination,economy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.date_checker);
         datePicker = findViewById(R.id.dater);
         firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        pickup = "Nairobi";
+        destination = "Voi";
+        price = 1000;
+        economy = "First class";
 
-        //          FirebaseAuth.getInstance().signOut();
 
 
         String dateFormat = "yyyy/MM/dd";
@@ -59,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                mDay=dayOfMonth;
+                mMonth = monthOfYear + 1;
+                mYear = year;
 
 
             }
@@ -85,29 +72,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void post(View view) {
-
-    firebaseDatabase.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setter();
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-        }
-    });
+        Intent intent = new Intent(getApplicationContext(),Booking.class);
+        intent.putExtra(Booking.EXTRA_DAY , mDay);
+        intent.putExtra(Booking.EXTRA_MONTH , mMonth);
+        intent.putExtra(Booking.EXTRAYEAR , mYear);
+        intent.putExtra(Booking.EXTRA_FROM , pickup);
+        intent.putExtra(Booking.EXTRA_TO , destination);
+        intent.putExtra(Booking.EXTRA_PRICE , price);
+        intent.putExtra(Booking.EXTRA_ECONOMY , economy);
+        startActivity(intent);
 
 
-    }
-    public void setter()
-    {
-//        entry ee= new entry("sam","25852","1500");
-//        Map<String, Object> postValues = ee.mapper();
-//        Map<String, Object> childUpdates = new HashMap<>();
-//        childUpdates.put("2018/09/07" , postValues);
-//        firebaseDatabase.updateChildren(childUpdates);
-        startActivity(new Intent(getApplicationContext(), Logger.class));
+
 
     }
+
 }

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,17 +18,28 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Logger extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    FirebaseAuth.AuthStateListener authStateListener;
     EditText username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logger);
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        Log.e("sam", " first instance of user is"+ currentUser);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        authStateListener =new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser =firebaseAuth.getCurrentUser();
+                if(firebaseUser !=null){
+                    startActivity(new Intent(getApplicationContext(),Home.class));
+
+                }
+                else{
+                    Log.e("sam", "not logged in");
+                }
+            }
+        };
 
 
     }
@@ -35,10 +47,16 @@ public class Logger extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(currentUser!=null)
-        {
-            startActivity(new Intent(this,MainActivity.class));
-        }
+        mAuth.addAuthStateListener(authStateListener);
+        Log.e("sam", "added the listener in Logger");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(authStateListener);
+        Log.e("sam", "removed the listener in Logger");
     }
 
     public void logger(View view) {
@@ -52,7 +70,7 @@ public class Logger extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), Home.class));
                     } else {
                         Log.e("sam", "wrong credientials");
                     }
@@ -61,7 +79,7 @@ public class Logger extends AppCompatActivity {
         }
         else
         {
-            Log.e("sam", "enter something");
+            Toast.makeText(getApplicationContext(),"Enter Something" , Toast.LENGTH_SHORT).show();
         }
 
 
