@@ -1,132 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Date_checker"
+    android:scrollbars="vertical"
+   >
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Date_checker"
     android:orientation="vertical"
+
     >
 
    <DatePicker
        android:id="@+id/dater"
        android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="5">
+       android:layout_height="wrap_content"
+
+       >
 
    </DatePicker>
+
    <LinearLayout
+       style="@style/scheduler"
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:layout_weight="3"
-       android:orientation="vertical"
-       >
+       android:background=" #eaf2f8  "
+       android:orientation="vertical">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"
           android:layout_weight="1"
           android:orientation="horizontal"
           >
+
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
+             android:gravity="center"
              android:text="Stations"
+
              />
+
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
+             android:gravity="center"
              android:text="Voi"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="Msa"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="Nairobi"
+
              />
 
-      </LinearLayout>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:orientation="horizontal"
-          >
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
-             android:text="Voi"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
-             android:gravity="center"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
-             android:gravity="center"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
-             android:gravity="center"
-             />
+             android:text="Msa" />
 
-      </LinearLayout>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:orientation="horizontal"
-          >
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
-             android:text="Msa"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
              android:gravity="center"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
-             android:gravity="center"
-             />
-         <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:text="1000"
-             android:gravity="center"
-             />
+
+             android:text="Nairobi" />
 
       </LinearLayout>
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"
+          android:layout_marginTop="@dimen/padding_top"
           android:layout_weight="1"
           android:orientation="horizontal">
 
@@ -134,31 +87,110 @@
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
+             android:gravity="center"
+             android:text="Voi"
+
+             />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginTop="@dimen/padding_top"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+
+          >
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="Msa" />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="1000" />
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginTop="@dimen/padding_top"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+
+          >
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+
              android:text="Nairobi" />
 
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
-             android:text="1000"
              android:gravity="center"
-             />
+             android:text="1000" />
 
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
-             android:text="1000"
              android:gravity="center"
-             />
+             android:text="1000" />
 
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
-             android:text="1000"
              android:gravity="center"
-             />
+             android:text="1000" />
 
       </LinearLayout>
 
@@ -172,13 +204,13 @@
       android:layout_weight="1"
        android:orientation="horizontal"
        android:checkedButton="@id/first"
+       android:paddingTop="@dimen/padding_top"
        >
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/first"
           android:text="First class"
-          android:onClick="radiooo"
 
           />
       <RadioButton
@@ -188,7 +220,6 @@
           android:layout_marginLeft="88dp"
           android:id="@+id/second"
           android:text="Economy Class"
-          android:onClick="radiooo"
 
           />
 
@@ -198,26 +229,30 @@
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-       android:orientation="horizontal"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/padding_top"
     >
-      <android.support.v7.widget.AppCompatSpinner
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent">
-
-      </android.support.v7.widget.AppCompatSpinner>
-      <android.support.v7.widget.AppCompatSpinner
+      <Spinner
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:layout_marginLeft="128dp">
+          android:id="@+id/from">
 
-      </android.support.v7.widget.AppCompatSpinner>
+      </Spinner>
+      <Spinner
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="128dp"
+          android:id="@+id/to"
+          >
+
+
+      </Spinner>
 
    </LinearLayout>
    <android.support.design.widget.FloatingActionButton
        android:id="@+id/floatingActionButton"
        android:layout_width="wrap_content"
-       android:layout_height="0dp"
-       android:layout_weight="1"
+       android:layout_height="wrap_content"
        android:clickable="true"
        android:layout_gravity="end"
        app:srcCompat="@android:drawable/ic_media_play"
@@ -227,3 +262,4 @@
 
 
 </LinearLayout>
+</ScrollView>
