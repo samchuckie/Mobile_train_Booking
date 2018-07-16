@@ -1,21 +1,13 @@
 package com.example.asce.databasetests;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView  ;
@@ -27,25 +19,28 @@ public class Home extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             int id = item.getItemId();
+            String frag_home = null;
             android.support.v4.app.Fragment switcher = null;
             switch (id)
             {
                 case R.id.home_id:
                     switcher = new Home_fragment();
+                    frag_home ="home";
 
                     break;
                 case R.id.booking_id:
-                    switcher = new Booking_fragement();
+                    switcher = new DateChecker();
+                    frag_home ="datechecker";
                     break;
                 case R.id.checking_id:
-                    switcher = new Checking_fragment()                    ;
+                  //  switcher = new TrainEntry()                    ;
                     break;
                 case R.id.logout_id:
                     FirebaseAuth.getInstance().signOut();
                     break;
 
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.frags_container , switcher).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frags_container , switcher,frag_home).addToBackStack(null).commit();
 
 
             return true;

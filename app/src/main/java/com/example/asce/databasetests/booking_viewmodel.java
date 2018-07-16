@@ -4,19 +4,45 @@ import android.arch.lifecycle.ViewModel;
 
 
 public class booking_viewmodel extends ViewModel {
-    int mYear , mMonth , mDay,price;
-
-    booking_viewmodel()
-    {
-        setdefault();
-    }
-    long dategotten;
     //String dateFormat = "yyyy/MM/dd";
-   // SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.GERMAN);
+    // SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.GERMAN);
 
 //    String dateString = sdf.format(currentdate);
 //        Log.e("sam", "" );
 
+
+    booking_viewmodel(){
+        setdefault();
+    }
+
+    private int mYear , mMonth , mDay,price;
+    String destination_station ,departure_station , economical_status;
+
+    public String getEconomical_status() {
+        return economical_status;
+    }
+
+    public String getDeparture_station() {
+        return departure_station;
+    }
+
+    public String getDestination_station() {
+        return destination_station;
+    }
+
+    public void setEconomical_status(String economical_status) {
+        this.economical_status = economical_status;
+    }
+
+    public void setDeparture_station(String departure_station) {
+        this.departure_station = departure_station;
+    }
+
+    public void setDestination_station(String destination_station) {
+        this.destination_station = destination_station;
+    }
+
+    long dategotten;
 
     public long getDategotten() {
         return dategotten;

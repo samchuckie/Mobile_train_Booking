@@ -30,8 +30,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="book"
         android:text="Book"
+        android:id="@+id/requester"
         />
+
 
 </LinearLayout>

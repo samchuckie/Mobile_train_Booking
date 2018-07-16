@@ -84,4 +84,8 @@ public class Logger extends AppCompatActivity {
 
 
     }
+
+    public void register(View view) {
+        startActivity(new Intent(getApplicationContext(), Register.class));
+    }
 }
