@@ -1,4 +1,4 @@
-package com.example.asce.databasetests;
+package com.example.asce.databasetests.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.asce.databasetests.R;
 
 public class Home_fragment extends Fragment {
 

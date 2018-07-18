@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/new_password"
         android:hint="password"
+        android:inputType="textPassword"
+
 
         >
 
@@ -30,6 +32,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/confirm_password"
         android:hint="Confirm passworm"
+        android:inputType="textPassword"
+
 
         >
 

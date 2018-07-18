@@ -4,20 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Booking"
+    tools:context=".Activties_old.Booking"
     android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_top"
     >
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/names"
         tools:text="names"
+        android:layout_marginTop="@dimen/margin_top"
+        android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id"
         tools:text="id"
+        android:layout_marginTop="@dimen/margin_top"
+        android:drawableStart="@drawable/ic_vpn_key_black_24dp"
 
         />
     <EditText
@@ -25,6 +31,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/telephone"
         tools:text="telephone"
+        android:layout_marginTop="@dimen/margin_top"
+        android:drawableStart="@drawable/ic_smartphone_black_24dp"
 
         />
     <Button
@@ -32,6 +40,8 @@
         android:layout_height="wrap_content"
         android:text="Book"
         android:id="@+id/requester"
+        android:layout_marginTop="@dimen/margin_top"
+
         />
 
 

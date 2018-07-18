@@ -2,14 +2,19 @@ package com.example.asce.databasetests;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.asce.databasetests.Fragments.DateChecker;
+import com.example.asce.databasetests.Fragments.Home_fragment;
+import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,7 +24,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class Logger extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
-    EditText username,password;
+    EditText username, password;
+    //        android:drawableStart="@drawable/ic_store_white_48dp"
+    //                android:drawableStart="@drawable/icon_user"
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +35,14 @@ public class Logger extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        authStateListener =new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser =firebaseAuth.getCurrentUser();
-                if(firebaseUser !=null){
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    startActivity(new Intent(getApplicationContext(), Home.class));
 
-                }
-                else{
+                } else {
                     Log.e("sam", "not logged in");
                 }
             }
@@ -61,9 +68,9 @@ public class Logger extends AppCompatActivity {
 
     public void logger(View view) {
 
-        String email =username.getText().toString();
-        String pass =password.getText().toString();
-        if (TextUtils.isEmpty(email)==false && TextUtils.isEmpty(pass)==false) {
+        String email = username.getText().toString();
+        String pass = password.getText().toString();
+        if (TextUtils.isEmpty(email) == false && TextUtils.isEmpty(pass) == false) {
 
 
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -76,10 +83,8 @@ public class Logger extends AppCompatActivity {
                     }
                 }
             });
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Enter Something" , Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Enter Something", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -88,4 +93,5 @@ public class Logger extends AppCompatActivity {
     public void register(View view) {
         startActivity(new Intent(getApplicationContext(), Register.class));
     }
+
 }

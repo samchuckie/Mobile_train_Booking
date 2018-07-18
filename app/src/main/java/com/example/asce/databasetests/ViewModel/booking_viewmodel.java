@@ -1,4 +1,4 @@
-package com.example.asce.databasetests;
+package com.example.asce.databasetests.ViewModel;
 
 import android.arch.lifecycle.ViewModel;
 
@@ -11,7 +11,7 @@ public class booking_viewmodel extends ViewModel {
 //        Log.e("sam", "" );
 
 
-    booking_viewmodel(){
+    public booking_viewmodel(){
         setdefault();
     }
 

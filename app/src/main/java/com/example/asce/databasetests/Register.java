@@ -32,15 +32,17 @@ public class Register extends AppCompatActivity {
 
         }
     };
-    ConnectivityManager cm ;
+  //  ConnectivityManager cm ;
+   // NetworkInfo activeNetwork;
 
-    NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
     boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+         //activeNetwork = cm.getActiveNetworkInfo();
+
 
         reg_password=findViewById(R.id.new_password);
         confirm_password = findViewById(R.id.confirm_password);
@@ -50,9 +52,9 @@ public class Register extends AppCompatActivity {
 
     public void register_user(View view) {
         getinfo();
-        //firebaseAuth.createUserWithEmailAndPassword(user,pass).addOnCompleteListener(this ,oncomplete);
-        cm =(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        firebaseAuth.createUserWithEmailAndPassword(user,pass).addOnCompleteListener(this ,oncomplete);
+//        cm =(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         Log.e("sam", " " + isConnected);
     }
     private void getinfo()

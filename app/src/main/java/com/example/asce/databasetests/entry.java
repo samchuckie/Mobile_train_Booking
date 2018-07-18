@@ -8,22 +8,36 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class entry {
-    String name;
-    String id;
-    int price;
-    String phone;
+    private  String Nairobi;
+    private String name;
+    private String id;
+    private int price;
+    private String phone;
 
     public  entry()
     {
 
     }
 
-    public entry(String name ,String id,int price , String phone)
+    public String getNairobi() {
+        return Nairobi;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public entry(String name , String id, int price , String phone)
     {
         this.name =name;
         this.id =id ;
         this.price = price;
         this.phone =phone;
+    }
+    public  entry(String Nairobi,int price)
+    {
+        this.Nairobi =Nairobi;
+        this.price = price;
     }
     @Exclude
     public Map<String ,Object> mapper ()
