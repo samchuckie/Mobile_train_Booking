@@ -7,38 +7,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties
-public class entry {
-    private  String Nairobi;
+public class Entry {
+    private  String from;
     private String name;
-    private String id;
+    private int id;
     private int price;
-    private String phone;
+    private int phone;
 
-    public  entry()
+    public Entry()
     {
 
     }
 
-    public String getNairobi() {
-        return Nairobi;
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public entry(String name , String id, int price , String phone)
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
+    public Entry(String name , int id, int price , int phone)
     {
         this.name =name;
         this.id =id ;
         this.price = price;
         this.phone =phone;
     }
-    public  entry(String Nairobi,int price)
-    {
-        this.Nairobi =Nairobi;
-        this.price = price;
-    }
+
     @Exclude
     public Map<String ,Object> mapper ()
     {

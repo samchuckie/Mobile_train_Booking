@@ -8,12 +8,34 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/padding_top"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_top"
+
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Seat Number:"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:id="@+id/seat"
+            />
+
+    </LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/names"
         tools:text="names"
         android:layout_marginTop="@dimen/margin_top"
+        android:hint="Names"
         android:drawableStart="@drawable/ic_perm_identity_black_24dp"
 
         />
@@ -23,6 +45,7 @@
         android:id="@+id/id"
         tools:text="id"
         android:layout_marginTop="@dimen/margin_top"
+        android:hint="ID number"
         android:drawableStart="@drawable/ic_vpn_key_black_24dp"
 
         />
@@ -32,6 +55,7 @@
         android:id="@+id/telephone"
         tools:text="telephone"
         android:layout_marginTop="@dimen/margin_top"
+        android:hint="Telephone number"
         android:drawableStart="@drawable/ic_smartphone_black_24dp"
 
         />

@@ -15,7 +15,7 @@ public class booking_viewmodel extends ViewModel {
         setdefault();
     }
 
-    private int mYear , mMonth , mDay,price;
+    private int mYear , mMonth , mDay, price;
     String destination_station ,departure_station , economical_status;
 
     public String getEconomical_status() {
@@ -47,12 +47,11 @@ public class booking_viewmodel extends ViewModel {
     public long getDategotten() {
         return dategotten;
     }
-    public void getdatechanged(int mYear ,int mMonth ,int mDay,int price)
+    public void getdatechanged(int mYear ,int mMonth ,int mDay)
     {
     this.mYear =mYear;
     this.mMonth=mMonth;
     this.mDay = mDay;
-    this.price=price;
     }
 
     public int getmDay() {
@@ -71,10 +70,14 @@ public class booking_viewmodel extends ViewModel {
         return price;
     }
 
-    public void setDategotten(long dategotten) {
-        this.dategotten = dategotten;
+    public void setPrice(int price) {
+        this.price = price;
     }
-    public void setdefault()
+
+    //    public void setDategotten(long dategotten) {
+//        this.dategotten = dategotten;
+//    }
+    private void setdefault()
     {
         dategotten = System.currentTimeMillis();
     }

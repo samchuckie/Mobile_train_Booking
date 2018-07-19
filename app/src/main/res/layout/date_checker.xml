@@ -152,9 +152,9 @@
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
-             android:id="@+id/voi-msa"
              android:layout_weight="1"
              android:gravity="center"
+             android:id="@+id/voi-msa"
              android:text="1000" />
 
          <TextView
@@ -186,7 +186,6 @@
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
-             android:id="@+id/voi-nairobi"
              android:layout_weight="1"
              android:gravity="center"
              android:text="Nairobi" />
@@ -196,19 +195,22 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:gravity="center"
+             android:id="@+id/voi-nairobi"
+
              android:text="1000" />
 
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
+             android:id="@+id/msa-nairobi"
+
              android:gravity="center"
              android:text="1000" />
 
          <TextView
              android:layout_width="0dp"
              android:layout_height="match_parent"
-             android:id="@+id/msa-nairobi"
              android:layout_weight="1"
              android:gravity="center"
              android:text="-" />

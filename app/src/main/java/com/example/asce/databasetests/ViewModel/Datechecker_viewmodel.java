@@ -2,9 +2,10 @@ package com.example.asce.databasetests.ViewModel;
 
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
-import android.view.View;
+import android.util.Log;
 
-import com.example.asce.databasetests.entry;
+import com.example.asce.databasetests.Entry;
+import com.example.asce.databasetests.Fared;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,9 +14,21 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Datechecker_viewmodel extends ViewModel {
     DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference();
-    private int nm,nv,vm;
-    entry prices;
+    private int nm, nv, vm;
+    private int maximumseats = 40;
+    private int seat_availabe;
 
+    public int getMaximumseats() {
+        return maximumseats;
+    }
+
+    public void setSeat_availabe(int seat_availabe) {
+        this.seat_availabe = seat_availabe;
+    }
+
+    public int getSeat_availabe() {
+        return seat_availabe;
+    }
 
     public void setNm(int nm) {
         this.nm = nm;
@@ -41,16 +54,22 @@ public class Datechecker_viewmodel extends ViewModel {
         return vm;
     }
 
+
+;
+
     public void queryeconomical(String economical_class) {
         dbreference.child("Fares").child(economical_class).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                prices = dataSnapshot.child("Mombasa").getValue(entry.class);
-                setNm(prices.getPrice());
-                prices = dataSnapshot.child("Voi").getValue(entry.class);
-                setNv(prices.getPrice());
-                prices = dataSnapshot.child("Voi-Msa").getValue(entry.class);
-                setVm(prices.getPrice());
+
+                    Fared fares = dataSnapshot.getValue(Fared.class);
+                    setNm(fares.getNairobi_Mombasa());
+                    Log.e("sam", "Nairobi to msa is" + nm );
+                    setNv(fares.getNairobi_Voi());
+                    Log.e("sam", "Nairobi to voi" + nv );
+                    setVm(fares.getVoi_Mombasa());
+                    Log.e("sam", "Voi to MSA" + vm );
+
 
 
             }
@@ -60,5 +79,8 @@ public class Datechecker_viewmodel extends ViewModel {
 
             }
         });
+    }
+    public void queryprice(){
+
     }
 }

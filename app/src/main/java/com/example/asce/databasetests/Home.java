@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.asce.databasetests.Fragments.DateChecker;
+import com.example.asce.databasetests.Fragments.DateChecker_frag;
 import com.example.asce.databasetests.Fragments.Home_fragment;
+import com.example.asce.databasetests.Fragments.Tickets_frag;
 import com.example.asce.databasetests.ViewModel.Datechecker_viewmodel;
 import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.example.asce.databasetests.ViewModel.darajaViewModel;
@@ -17,8 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public  class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView  ;
-    FirebaseAuth.AuthStateListener authStateListener;
-    FirebaseAuth mAuth;
     public booking_viewmodel book;
     public Datechecker_viewmodel daterviewmodel ;
     public darajaViewModel darajavm;
@@ -37,11 +36,11 @@ public  class Home extends AppCompatActivity {
 
                     break;
                 case R.id.booking_id:
-                    switcher = new DateChecker();
+                    switcher = new DateChecker_frag();
                     frag_home ="datechecker";
                     break;
                 case R.id.checking_id:
-                    //  switcher = new TrainEntry()                    ;
+                      switcher = new Tickets_frag()                    ;
                     break;
                 case R.id.logout_id:
                     FirebaseAuth.getInstance().signOut();
@@ -69,71 +68,6 @@ public  class Home extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.frags_container, new Home_fragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
 
-        //
-        //        NavigationView navigationView = findViewById(R.id.train_nav);
-        //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-        //            @Override
-        //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //                int item_id=item.getItemId();
-        //                item.setChecked(true);
-        //
-        //                switch (item_id)
-        //                {
-        //                    case R.id.booking_id:
-        //                        startActivity(new Intent(getApplicationContext(), Date_checker.class));
-        //                        break;
-        //
-        //
-        //
-        //
-        //                }
-        //                train_drawer.closeDrawers();
-        //                return true;
-        //            }
-        //        });
-        //        mAuth =FirebaseAuth.getInstance();
-        //        authStateListener =new FirebaseAuth.AuthStateListener() {
-        //            @Override
-        //            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        //                FirebaseUser firebaseUser =firebaseAuth.getCurrentUser();
-        //                if(firebaseUser ==null){
-        //                    startActivity(new Intent(getApplicationContext(), Logger.class));
-        //
-        //
-        //                }
-        //                else{
-        //                    Log.e("sam", "you are logged in");
-        //                }
-        //            }
-        //        };
-        //
-        //    }
-        //    @Override
-        //    public boolean onOptionsItemSelected(MenuItem item) {
-        //        switch (item.getItemId()) {
-        //            case android.R.id.home:
-        //                train_drawer.openDrawer(GravityCompat.START);
-        //                return true;
-        //        }
-        //        return super.onOptionsItemSelected(item);
-        //    }
-        //
-        //    @Override
-        //    protected void onResume() {
-        //        super.onResume();
-        //        mAuth.addAuthStateListener(authStateListener);
-        //        Log.e("sam", "added the listener in Home");
-        //
-        //    }
-        //
-        //    @Override
-        //    protected void onPause() {
-        //        super.onPause();
-        //        mAuth.removeAuthStateListener(authStateListener);
-        //        Log.e("sam", "removed the listener in Home");
-        //    }
-        //
-        //}
     }
 
 }

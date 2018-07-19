@@ -15,13 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.example.asce.databasetests.Fragments.TrainEntry;
 import com.example.asce.databasetests.R;
 import com.example.asce.databasetests.ViewModel.Datechecker_viewmodel;
 import com.example.asce.databasetests.ViewModel.booking_viewmodel;
@@ -30,14 +27,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Calendar;
-
 import static android.app.DatePickerDialog.*;
 
-public class DateChecker extends Fragment implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class DateChecker_frag extends Fragment implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
     Spinner to_option,from_options;
-    DatePicker datePicker;
     DatabaseReference firebaseDatabase;
     private booking_viewmodel book;
     private Datechecker_viewmodel datechecker_viewmodel;
@@ -46,55 +40,14 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
     FloatingActionButton fab ;
     private String economical_class;
     TextView fdates , mv,mn,vm,vn,nm,nv;
-    final Calendar myCalendar = Calendar.getInstance();
     DatePicker picker ;
-    View.OnClickListener datess = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-//            final Calendar myCalendar = Calendar.getInstance();
-//            final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//                @Override
-//                public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                      int dayOfMonth) {
-//                    myCalendar.set(Calendar.YEAR, year);
-//                    myCalendar.set(Calendar.MONTH, monthOfYear);
-//                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                }
-//
-//            };
-
-//                    new DatePickerDialog(getContext() ,date, myCalendar
-//                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            DatePickerDialog dater= new DatePickerDialog(getContext(), new OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    book.getdatechanged(year,month + 1,dayOfMonth,1000);
-
-                    Log.e("sam", "og -" + year);
-                    Log.e("sam", "og -" + month);
-                    Log.e("sam", "og -" + dayOfMonth);
-
-                }
-            }, Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
-
-            picker=dater.getDatePicker();
-            picker.setMinDate(System.currentTimeMillis());
-            dater.show();
-
-
-        }
-    };
-
+    ArrayAdapter<CharSequence> adapter;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.date_checker ,container,false);
-
-
     }
 
     AdapterView.OnItemSelectedListener to_listener = new AdapterView.OnItemSelectedListener() {
@@ -107,9 +60,9 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
         }
     };
+
     AdapterView.OnItemSelectedListener from_listener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -119,10 +72,8 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
         }
     };
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -136,12 +87,12 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
         fab = getActivity().findViewById(R.id.floatingActionButton);
         dateicon = getActivity().findViewById(R.id.datepickericon);
         fab.setOnClickListener(booking);
-        dateicon.setOnClickListener(booking);
+        dateicon.setOnClickListener(datess);
         book = ViewModelProviders.of(getActivity()).get(booking_viewmodel.class);
         datechecker_viewmodel = ViewModelProviders.of(getActivity()).get(Datechecker_viewmodel.class);
         to_option = getActivity().findViewById(R.id.to);
         from_options = getActivity().findViewById(R.id.from);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+         adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         to_option.setAdapter(adapter);
@@ -156,59 +107,36 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
         mv= getActivity().findViewById(R.id.msa_voi);
 
     }
-
-
-
-    View.OnClickListener booking = new View.OnClickListener() {
+    View.OnClickListener datess = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-            String sYear =String.valueOf(book.getmYear());
-            String sMonth =String.valueOf(book.getmMonth());
-            String sDay =String.valueOf(book.getmDay());
-            Log.e("sam", "Year is " + sYear);
-            Log.e("sam", "Month is" + sMonth);
-            Log.e("sam", "Day is" + sDay);
-            Log.e("sam", "from is " + book.getDeparture_station());
-            Log.e("sam", "to is " + book.getDestination_station());
-            Log.e("sam", "Economical is " + book.getEconomical_status());
-            firebaseDatabase.child(sYear).child(sMonth).child(sDay)
-                    .child(book.getDeparture_station()).child(book.getDestination_station()).child(book.getEconomical_status())
-                    .addValueEventListener(new ValueEventListener() {
+            DatePickerDialog dater= new DatePickerDialog(getContext(), new OnDateSetListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Log.e("sam", "" + dataSnapshot.getChildrenCount());
-
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    book.getdatechanged(year,month + 1,dayOfMonth);
                 }
+            }, Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frags_container ,new TrainEntry(),"Booking").addToBackStack(null).commit();
-
+            picker=dater.getDatePicker();
+            picker.setMinDate(System.currentTimeMillis());
+            dater.show();
         }
     };
+
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.e("sam",parent.getItemAtPosition(position).toString());
-
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         boolean checked = buttonView.isChecked();
-
-
         switch (buttonView.getId()) {
             case R.id.first:
                 if (checked)
@@ -224,19 +152,77 @@ public class DateChecker extends Fragment implements AdapterView.OnItemSelectedL
                 book.setEconomical_status(economical_class);
                 Log.e("sam", "" + economical_class);
                 datechecker_viewmodel.queryeconomical(economical_class);
+                updateui();
                 break;
 
         }
     }
 
     private void updateui() {
-        mv.setText(datechecker_viewmodel.getVm());
-        mn.setText(datechecker_viewmodel.getNm());
-        vm.setText(datechecker_viewmodel.getVm());
-        vn.setText(datechecker_viewmodel.getNv());
-        nm.setText(datechecker_viewmodel.getNm());
-        nv.setText(datechecker_viewmodel.getNv());
-
-
+        mv.setText(String.valueOf(datechecker_viewmodel.getVm()));
+        mn.setText(String.valueOf(datechecker_viewmodel.getNm()));
+        vm.setText(String.valueOf(datechecker_viewmodel.getVm()));
+        vn.setText(String.valueOf(datechecker_viewmodel.getNv()));
+        nm.setText(String.valueOf(datechecker_viewmodel.getNm()));
+        nv.setText(String.valueOf(datechecker_viewmodel.getNv()));
     }
+    private void prices()
+    {
+        if(book.getDeparture_station()=="Nairobi"&&book.getDestination_station()=="Mombasa" )
+        {
+            book.setPrice(datechecker_viewmodel.getNm());
+
+        }
+        else
+            if(book.getDeparture_station().equals("Mombasa")&&book.getDestination_station().equals("Voi"))
+        {
+            book.setPrice(datechecker_viewmodel.getVm());
+            Log.e("sam" ,"Mombasa tp fdlmh;kmfkgmhfgmhlm voi is IS " + datechecker_viewmodel.getVm() );
+        }
+        else
+            if(book.getDeparture_station()=="Nairobi"&&book.getDestination_station()=="Voi")
+            {
+                book.setPrice(datechecker_viewmodel.getNv());
+            }
+            Log.e("sam" ,"From  is " + book.getDeparture_station() );
+            Log.e("sam" ,"Destination IS " + book.getDestination_station() );
+            Log.e("sam" ,"Mombasa tp voi is IS " + datechecker_viewmodel.getVm() );
+            Log.e("sam" ,"PRICE IS " + book.getPrice() );
+    }
+    View.OnClickListener booking = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+            String sYear =String.valueOf(book.getmYear());
+            String sMonth =String.valueOf(book.getmMonth());
+            String sDay =String.valueOf(book.getmDay());
+            firebaseDatabase.child(sYear).child(sMonth).child(sDay)
+                    .child(book.getDeparture_station()).child(book.getDestination_station())
+                    .child(book.getEconomical_status())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.e("sam", "" + dataSnapshot.getChildrenCount());
+                            int seats= (int) dataSnapshot.getChildrenCount();
+                            datechecker_viewmodel.setSeat_availabe(seats);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+            if(datechecker_viewmodel.getSeat_availabe()>=datechecker_viewmodel.getMaximumseats())
+            {
+                Log.e("sam" , "no seats available");
+            }
+            else {
+                Log.e("sam" , "there are seats available");
+                prices();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frags_container, new TrainEntry_frag(), "Booking").addToBackStack(null).commit();
+            }
+
+        }
+    };
 }

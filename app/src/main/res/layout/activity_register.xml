@@ -7,12 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".Register"
     android:orientation="vertical"
+    android:padding="56dp"
+    android:background="@drawable/my_bg"
     >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_gravity="center"
+        android:src="@drawable/trainfinal"
+
+
+        />
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:id="@+id/new_username"
         android:hint="e-mail"
+        android:textColorHint="@android:color/background_dark"
+
         >
 
     </EditText>
@@ -22,18 +34,17 @@
         android:id="@+id/new_password"
         android:hint="password"
         android:inputType="textPassword"
-
-
+        android:textColorHint="@android:color/background_dark"
         >
 
     </EditText>
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:id="@+id/confirm_password"
         android:hint="Confirm passworm"
         android:inputType="textPassword"
-
+        android:textColorHint="@android:color/background_dark"
 
         >
 
@@ -43,6 +54,9 @@
         android:layout_height="wrap_content"
         android:text="log in"
         android:onClick="register_user"
+        android:layout_gravity="center"
+
+
         />
 
 
