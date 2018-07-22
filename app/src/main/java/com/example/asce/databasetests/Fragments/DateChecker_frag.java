@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.asce.databasetests.R;
@@ -30,18 +31,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import static android.app.DatePickerDialog.*;
 
-public class DateChecker_frag extends Fragment implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class DateChecker_frag extends Fragment implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
     Spinner to_option,from_options;
     DatabaseReference firebaseDatabase;
     private booking_viewmodel book;
     private Datechecker_viewmodel datechecker_viewmodel;
     RadioButton first_class,economy_class;
+    RadioGroup rdgroup;
     ImageView dateicon;
     FloatingActionButton fab ;
     private String economical_class;
     TextView fdates , mv,mn,vm,vn,nm,nv;
     DatePicker picker ;
     ArrayAdapter<CharSequence> adapter;
+    private int b_id;
 
 
     @Nullable
@@ -76,14 +79,24 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
     };
 
     @Override
+    public void onStart() {
+        super.onStart();
+        Log.e("sammer" , "Activity resumed");
+        updateui();
+
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.e("sammer" , "Activity started");
         super.onActivityCreated(savedInstanceState);
         fdates =getActivity().findViewById(R.id.datepiclerss);
         fdates.setOnClickListener(datess);
         first_class = getActivity().findViewById(R.id.first);
         economy_class = getActivity().findViewById(R.id.second);
-        first_class.setOnCheckedChangeListener(this);
-        economy_class.setOnCheckedChangeListener(this);
+//        first_class.setOnCheckedChangeListener(this);
+//        economy_class.setOnCheckedChangeListener(this);
+        rdgroup = getActivity().findViewById(R.id.radiogroup);
         fab = getActivity().findViewById(R.id.floatingActionButton);
         dateicon = getActivity().findViewById(R.id.datepickericon);
         fab.setOnClickListener(booking);
@@ -105,6 +118,10 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
         vn= getActivity().findViewById(R.id.voi_nairobi);
         mn= getActivity().findViewById(R.id.msa_nairobi);
         mv= getActivity().findViewById(R.id.msa_voi);
+        economical_class = "First class";
+        book.setEconomical_status(economical_class);
+        datechecker_viewmodel.queryeconomical(economical_class);
+        rdgroup.setOnCheckedChangeListener(this);
 
     }
     View.OnClickListener datess = new View.OnClickListener() {
@@ -114,6 +131,7 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     book.getdatechanged(year,month + 1,dayOfMonth);
+                    fdates.setText("" + year +"/" + month + "/" + dayOfMonth);
                 }
             }, Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
 
@@ -122,6 +140,14 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
             dater.show();
         }
     };
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switches(checkedId);
+        book.setEconomical_status(economical_class);
+        datechecker_viewmodel.queryeconomical(economical_class);
+        updateui();
+
+    }
 
 
 
@@ -134,25 +160,18 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        boolean checked = buttonView.isChecked();
-        switch (buttonView.getId()) {
+    private void switches(int id)
+    {
+        switch (id) {
             case R.id.first:
-                if (checked)
-                    economical_class = buttonView.getText().toString();
-                    Log.e("sam", "" + economical_class);
-                    book.setEconomical_status(economical_class);
-                    datechecker_viewmodel.queryeconomical(economical_class);
-                    updateui();
+                    economical_class = first_class.getText().toString();
+                Log.e("sam", "frist clasesese" + economical_class);
+
                 break;
             case R.id.second:
-                if (checked)
-                economical_class = buttonView.getText().toString();
-                book.setEconomical_status(economical_class);
-                Log.e("sam", "" + economical_class);
-                datechecker_viewmodel.queryeconomical(economical_class);
-                updateui();
+                    economical_class = economy_class.getText().toString();
+                Log.e("sam", "economical classsesdsfdsf" + economical_class);
+
                 break;
 
         }
@@ -168,26 +187,36 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
     }
     private void prices()
     {
-        if(book.getDeparture_station()=="Nairobi"&&book.getDestination_station()=="Mombasa" )
+        if(book.getDeparture_station().equals("Nairobi")&&book.getDestination_station().equals("Mombasa"))
         {
             book.setPrice(datechecker_viewmodel.getNm());
-
+        }
+        else
+            if(book.getDeparture_station().equals("Mombasa")&&book.getDestination_station().equals("Nairobi"))
+        {
+            book.setPrice(datechecker_viewmodel.getNm());
         }
         else
             if(book.getDeparture_station().equals("Mombasa")&&book.getDestination_station().equals("Voi"))
         {
             book.setPrice(datechecker_viewmodel.getVm());
-            Log.e("sam" ,"Mombasa tp fdlmh;kmfkgmhfgmhlm voi is IS " + datechecker_viewmodel.getVm() );
         }
+            else
+            if(book.getDeparture_station().equals("Voi")&&book.getDestination_station().equals("Mombasa"))
+            {
+                book.setPrice(datechecker_viewmodel.getVm());
+            }
         else
-            if(book.getDeparture_station()=="Nairobi"&&book.getDestination_station()=="Voi")
+            if(book.getDeparture_station().equals("Nairobi")&&book.getDestination_station().equals("Voi"))
             {
                 book.setPrice(datechecker_viewmodel.getNv());
             }
-            Log.e("sam" ,"From  is " + book.getDeparture_station() );
-            Log.e("sam" ,"Destination IS " + book.getDestination_station() );
-            Log.e("sam" ,"Mombasa tp voi is IS " + datechecker_viewmodel.getVm() );
-            Log.e("sam" ,"PRICE IS " + book.getPrice() );
+            else
+            if(book.getDeparture_station().equals("Voi")&&book.getDestination_station().equals("Nairobi"))
+            {
+                book.setPrice(datechecker_viewmodel.getNv());
+            }
+
     }
     View.OnClickListener booking = new View.OnClickListener() {
         @Override
@@ -225,4 +254,6 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
 
         }
     };
+
+
 }

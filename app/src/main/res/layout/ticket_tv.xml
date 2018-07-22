@@ -10,26 +10,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:text="id"
+        android:id="@+id/tk_id"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         tools:text="Name"
         android:id="@+id/tk_name"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Telephone"
-        android:id="@+id/tk_telephone"
+        tools:text="Phone Number"
+        android:id="@+id/tk_phoneno"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="From"
-        android:id="@+id/tk_from"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="To"
-        android:id="@+id/tk_to"
+        tools:text="Price"
+        android:id="@+id/tk_price"
         />
 
 </LinearLayout>

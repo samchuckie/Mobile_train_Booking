@@ -48,10 +48,10 @@ public class Entry {
     public Map<String ,Object> mapper ()
     {
         HashMap <String ,Object> tomaps = new HashMap<>();
-        tomaps.put("Name" , name);
-        tomaps.put("ID" , id);
-        tomaps.put("Price", price);
-        tomaps.put("Phone Number", phone);
+        tomaps.put("name" , name);
+        tomaps.put("id" , id);
+        tomaps.put("price", price);
+        tomaps.put("phonenumber", phone);
         return tomaps;
     }
 

@@ -37,6 +37,7 @@
         android:layout_marginTop="@dimen/margin_top"
         android:hint="Names"
         android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+        android:inputType="text"
 
         />
     <EditText
@@ -46,6 +47,7 @@
         tools:text="id"
         android:layout_marginTop="@dimen/margin_top"
         android:hint="ID number"
+        android:inputType="number"
         android:drawableStart="@drawable/ic_vpn_key_black_24dp"
 
         />
@@ -56,6 +58,7 @@
         tools:text="telephone"
         android:layout_marginTop="@dimen/margin_top"
         android:hint="Telephone number"
+        android:inputType="number"
         android:drawableStart="@drawable/ic_smartphone_black_24dp"
 
         />

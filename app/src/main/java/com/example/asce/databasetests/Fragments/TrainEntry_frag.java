@@ -132,8 +132,7 @@ public class TrainEntry_frag extends Fragment {
                     darajavm.getAmount(book.getPrice()),
                     darajavm.getPartyA(),
                     darajavm.getPartyB(),
-                    // TODO: USE PHONE NUMBER GOTTEN
-                    darajavm.getPhoneno(),
+                   darajavm.getPhoneno(),
                     darajavm.getCallbackurl(),
                     darajavm.getAccountreference(),
                     darajavm.getTransactiondec()
@@ -143,25 +142,26 @@ public class TrainEntry_frag extends Fragment {
             Log.e("sam", "The telephone is " + user_telephone);
             Log.e("sam", "The price is " + book.getPrice());
             setter(user_name, user_id, book.getPrice(), user_telephone);
-            daraja.requestMPESAExpress(lnmExpress, new DarajaListener<LNMResult>() {
-                        @Override
-                        public void onResult(@NonNull LNMResult lnmResult) {
-                            Log.e("sam", "descritpion" + lnmResult.ResponseDescription);
-                            setter(user_name, user_id, book.getPrice(), user_telephone);
-                        }
-
-                        @Override
-                        public void onError(String error) {
-                            Log.e("sam", error);
-                        }
-                    }
-            );
+//            daraja.requestMPESAExpress(lnmExpress, new DarajaListener<LNMResult>() {
+//                        @Override
+//                        public void onResult(@NonNull LNMResult lnmResult) {
+//                            Log.e("sam", "descritpion" + lnmResult.ResponseDescription);
+//                            setter(user_name, user_id, book.getPrice(), user_telephone);
+//                        }
+//
+//                        @Override
+//                        public void onError(String error) {
+//                            Log.e("sam", error);
+//                        }
+//                    }
+//            );
         }
     };
 
     public void setter(String name ,int id,int price , int phone)
     {
         Entry tick_entry= new Entry(name,id ,price ,phone);
+        String key =databaseReference.child("UserTickets/").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).push().getKey();
         Map<String, Object> postValues = tick_entry.mapper();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(byear + "/" + bmonth + "/" +bday + "/" + book.getDeparture_station()
@@ -169,10 +169,8 @@ public class TrainEntry_frag extends Fragment {
         databaseReference.updateChildren(childUpdates);
 
         Map<String ,Object> usermap = new HashMap<>() ;
-        usermap.put("UserTickets/" + FirebaseAuth.getInstance().getCurrentUser().getUid()  , postValues);
-
+        usermap.put("UserTickets/" + FirebaseAuth.getInstance().getCurrentUser().getUid() +"/" +  key , postValues);
         databaseReference.updateChildren(usermap);
-
         }
 
 }

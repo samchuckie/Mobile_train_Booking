@@ -40,7 +40,8 @@ public  class Home extends AppCompatActivity {
                     frag_home ="datechecker";
                     break;
                 case R.id.checking_id:
-                      switcher = new Tickets_frag()                    ;
+                      switcher = new Tickets_frag();
+                      frag_home ="Ticket";;
                     break;
                 case R.id.logout_id:
                     FirebaseAuth.getInstance().signOut();

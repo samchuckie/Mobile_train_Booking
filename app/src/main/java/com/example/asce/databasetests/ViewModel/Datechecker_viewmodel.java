@@ -61,17 +61,10 @@ public class Datechecker_viewmodel extends ViewModel {
         dbreference.child("Fares").child(economical_class).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     Fared fares = dataSnapshot.getValue(Fared.class);
                     setNm(fares.getNairobi_Mombasa());
-                    Log.e("sam", "Nairobi to msa is" + nm );
                     setNv(fares.getNairobi_Voi());
-                    Log.e("sam", "Nairobi to voi" + nv );
                     setVm(fares.getVoi_Mombasa());
-                    Log.e("sam", "Voi to MSA" + vm );
-
-
-
             }
 
             @Override
