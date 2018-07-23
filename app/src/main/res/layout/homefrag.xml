@@ -5,39 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     >
+
     <ImageView
+        android:id="@+id/welcoming_iv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:id="@+id/welcoming_iv"
-        android:src="@drawable/mdrexpress"
         android:scaleType="centerCrop"
-        />
+        android:src="@drawable/mdrexpress" />
     <TextView
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/basicinfor_tv"
-        android:text="Hello welcome to Tick-o. Aiming to make your booking much easier. We hope you enjoy our services"
+        android:text="@string/general"
+        android:textSize="14sp"
         />
-    <android.support.v7.widget.RecyclerView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/maps_rv"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_map_black_24dp"
+        android:text="Nairobi"
+        android:id="@+id/Nairobi"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="16sp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_map_black_24dp"
+        android:text="Mombasa"
+        android:id="@+id/Mombasa"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="16sp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_map_black_24dp"
+        android:text="Voi"
+        android:id="@+id/Voi"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="16sp"
+
+
+
+
+        android:labelFor="@id/bot"
+
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/bot"
+
         >
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:padding="8dp"
+
             >
 
             <TextView
@@ -56,6 +95,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
+            android:padding="8dp"
+
+
             >
 
             <TextView

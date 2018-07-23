@@ -5,8 +5,8 @@ public class TicketBooked {
     public TicketBooked(){
 
     }
-    int id, phonenumber, price;
-    String name;
+    private int id, phonenumber, price;
+   private String name,trainentry_id;
 
     public int getPrice() {
         return price;
@@ -24,6 +24,13 @@ public class TicketBooked {
         return phonenumber;
     }
 
+    public void setTrainentry_id(String trainentry_id) {
+        this.trainentry_id = trainentry_id;
+    }
+
+    public String getTrainentry_id() {
+        return trainentry_id;
+    }
 
     public TicketBooked(int id, String name, int phonenumber, int price){
     this.id=id;

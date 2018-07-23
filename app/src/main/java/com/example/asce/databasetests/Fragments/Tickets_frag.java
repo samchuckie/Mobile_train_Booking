@@ -1,5 +1,8 @@
 package com.example.asce.databasetests.Fragments;
 
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.asce.databasetests.R;
+import com.example.asce.databasetests.ViewModel.CurrentTicker;
 import com.example.asce.databasetests.ViewModel.TicketBooked;
+import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -21,11 +26,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tickets_frag extends Fragment {
+public class Tickets_frag extends Fragment implements Ticketsadapter.ItemClickListener {
 
     RecyclerView alltickets_rv;
     LinearLayoutManager linearLayoutManager;
@@ -34,6 +40,7 @@ public class Tickets_frag extends Fragment {
     private String userid;
     private DatabaseReference databaseReference;
     List<TicketBooked> tbb = new ArrayList<>();
+    private CurrentTicker currentTicker;
 
 
     @Nullable
@@ -46,8 +53,9 @@ public class Tickets_frag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         alltickets_rv =getActivity().findViewById(R.id.allticketickets_rv);
+        currentTicker = ViewModelProviders.of(getActivity()).get(CurrentTicker.class);
         linearLayoutManager = new LinearLayoutManager(getContext());
-        ticketsadapter = new Ticketsadapter();
+        ticketsadapter = new Ticketsadapter(this);
         alltickets_rv.setLayoutManager(linearLayoutManager);
         alltickets_rv.setAdapter(ticketsadapter);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -57,13 +65,9 @@ public class Tickets_frag extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 TicketBooked booked = dataSnapshot.getValue(TicketBooked.class);
-                Log.e("sam", "" + dataSnapshot.getValue());
-                Log.e("sam", "" + booked.getName());
-                Log.e("sam", "" + booked.getId());
-
+                String trainentry_id = dataSnapshot.getKey();
+                booked.setTrainentry_id(trainentry_id);
                 new Tickets_async().execute(booked);
-//                    ticketsadapter.addticket(tbb);
-
             }
 
             @Override
@@ -87,12 +91,31 @@ public class Tickets_frag extends Fragment {
             }
         });
 
-
-
-
-
-
     }
+
+    @Override
+    public void onItemClickListener(String itemId) {
+        databaseReference.child(userid).child(itemId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.e("sam" , "" + dataSnapshot.getValue());
+                TicketBooked todisplay =  dataSnapshot.getValue(TicketBooked.class);
+                currentTicker.setId(todisplay.getId());
+                currentTicker.setName(todisplay.getName());
+                currentTicker.setPhonenumber(todisplay.getPhonenumber());
+                currentTicker.setTrainentry_id(dataSnapshot.getKey());
+                currentTicker.setPrice(todisplay.getPrice());
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frags_container, new TicketToDisplay(), "Booking").addToBackStack(null).commit();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private class Tickets_async extends AsyncTask<TicketBooked, Void, TicketBooked> {
         @Override
         protected TicketBooked doInBackground(TicketBooked... ticketBookeds) {

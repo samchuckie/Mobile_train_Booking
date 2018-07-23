@@ -1,28 +1,34 @@
 package com.example.asce.databasetests.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import com.example.asce.databasetests.Adapters.MapsAdapter;
+import android.widget.TextView;
 import com.example.asce.databasetests.R;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Home_fragment extends Fragment {
 
-    List<String> places;
-    RecyclerView maps_rv;
-    LinearLayoutManager linearLayoutManager;
-    MapsAdapter mapsAdapter;
+    TextView nairobi,mombasa,voi;
+    private View.OnClickListener mapper = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            Uri geolocation= Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway%2C+CA");
+            i.setData(geolocation);
+            if (i.resolveActivity(getActivity().getPackageManager())!= null)
+            {
+                startActivity(i);
+            }
+
+        }
+    };
 
     @Nullable
     @Override
@@ -33,15 +39,11 @@ public class Home_fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        maps_rv = getActivity().findViewById(R.id.maps_rv);
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        maps_rv.setLayoutManager(linearLayoutManager);
-        places = new ArrayList();
-        places.add("Nairobi");
-        places.add("Mombasa");
-        places.add("Voi");
-        mapsAdapter= new MapsAdapter(places);
-        maps_rv.setAdapter(mapsAdapter);
+        nairobi=getActivity().findViewById(R.id.Nairobi);
+        mombasa=getActivity().findViewById(R.id.Mombasa);
+        voi=getActivity().findViewById(R.id.Voi);
+        nairobi.setOnClickListener(mapper);
+
 
 
     }

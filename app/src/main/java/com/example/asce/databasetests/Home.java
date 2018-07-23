@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.asce.databasetests.Fragments.DateChecker_frag;
 import com.example.asce.databasetests.Fragments.Home_fragment;
 import com.example.asce.databasetests.Fragments.Tickets_frag;
+import com.example.asce.databasetests.ViewModel.CurrentTicker;
 import com.example.asce.databasetests.ViewModel.Datechecker_viewmodel;
 import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.example.asce.databasetests.ViewModel.darajaViewModel;
@@ -21,6 +22,7 @@ public  class Home extends AppCompatActivity {
     public booking_viewmodel book;
     public Datechecker_viewmodel daterviewmodel ;
     public darajaViewModel darajavm;
+    CurrentTicker currentTicker;
     BottomNavigationView.OnNavigationItemSelectedListener navlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -44,8 +46,11 @@ public  class Home extends AppCompatActivity {
                       frag_home ="Ticket";;
                     break;
                 case R.id.logout_id:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(), Logger.class));
+//                    FirebaseAuth.getInstance().signOut();
+//                    startActivity(new Intent(getApplicationContext(), Logger.class));
+                    logger();
+
+
                     break;
 
             }
@@ -63,12 +68,17 @@ public  class Home extends AppCompatActivity {
         Log.e("sam", "activity createdd");
         book =new booking_viewmodel();
         daterviewmodel = new Datechecker_viewmodel();
+        currentTicker= new CurrentTicker();
         darajavm =new darajaViewModel();
         Log.e("sam", "" + book.getDategotten());
         bottomNavigationView = findViewById(R.id.bottom_drawer);
         getSupportFragmentManager().beginTransaction().add(R.id.frags_container, new Home_fragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
 
+    }
+    public void  logger(){
+        Logout_fragemnt logout_fragemnt = new Logout_fragemnt();
+        logout_fragemnt.show(getSupportFragmentManager(),"Logout");
     }
 
 }

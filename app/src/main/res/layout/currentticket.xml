@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             tools:text="id"
-            android:id="@+id/tk_id"
+            android:id="@+id/ctk_id"
             style="@style/trainentries"
 
             />
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             tools:text="Name"
-            android:id="@+id/tk_name"
+            android:id="@+id/ctk_name"
             />
     </LinearLayout>
     <LinearLayout
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             tools:text="Telephone number"
-            android:id="@+id/tk_phoneno"
+            android:id="@+id/ctk_phoneno"
             style="@style/trainentries"
 
 
@@ -97,18 +97,19 @@
             android:layout_weight="5"
             android:paddingLeft="8dp"
             tools:text="Price"
-            android:id="@+id/tk_price"
+            android:id="@+id/ctk_price"
             style="@style/trainentries"
 
             />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/delete"
-            android:src="@drawable/ic_delete_forever_black_24dp"
-            />
+
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteentry"
+        android:layout_marginTop="24dp"
+        android:text="Delete"
+        />
 
 
 

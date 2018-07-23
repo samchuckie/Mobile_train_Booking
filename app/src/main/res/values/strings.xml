@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Tick-o</string>
+    <string name="general">Hello welcome to Tick-o. Aiming to make your booking much easier. We hope you enjoy our services.
+        This a platform to enable to book,check and manage your booking all in one place. For any enquiries our contact information will be below. Have a nice day
+    </string>
 </resources>

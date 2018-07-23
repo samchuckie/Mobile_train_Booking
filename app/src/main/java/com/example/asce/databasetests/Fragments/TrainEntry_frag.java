@@ -92,7 +92,6 @@ public class TrainEntry_frag extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                         //use to check if seast available change during booking
                         int number = (int) dataSnapshot.getChildrenCount();
                         if (number<=datechecker_viewmodel.getMaximumseats())
@@ -100,7 +99,6 @@ public class TrainEntry_frag extends Fragment {
                             number++;
                             seatnumber = number;
                             seatno.setText(String.valueOf(seatnumber));
-
                         }
                         else
                         {
@@ -132,7 +130,7 @@ public class TrainEntry_frag extends Fragment {
                     darajavm.getAmount(book.getPrice()),
                     darajavm.getPartyA(),
                     darajavm.getPartyB(),
-                   darajavm.getPhoneno(),
+                    darajavm.getPhoneno(),
                     darajavm.getCallbackurl(),
                     darajavm.getAccountreference(),
                     darajavm.getTransactiondec()
@@ -142,6 +140,7 @@ public class TrainEntry_frag extends Fragment {
             Log.e("sam", "The telephone is " + user_telephone);
             Log.e("sam", "The price is " + book.getPrice());
             setter(user_name, user_id, book.getPrice(), user_telephone);
+            getFragmentManager().popBackStackImmediate();
 //            daraja.requestMPESAExpress(lnmExpress, new DarajaListener<LNMResult>() {
 //                        @Override
 //                        public void onResult(@NonNull LNMResult lnmResult) {

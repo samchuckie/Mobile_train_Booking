@@ -1,11 +1,13 @@
 package com.example.asce.databasetests;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -51,17 +53,38 @@ public class Register extends AppCompatActivity {
     }
 
     public void register_user(View view) {
-        getinfo();
-        firebaseAuth.createUserWithEmailAndPassword(user,pass).addOnCompleteListener(this ,oncomplete);
+        if(!TextUtils.isEmpty(reg_username.getText().toString()) && !TextUtils.isEmpty(reg_password.getText().toString())&&!TextUtils.isEmpty(confirm_password.getText().toString()))
+        {
+            if(getinfo())
+            {
+                firebaseAuth.createUserWithEmailAndPassword(user,pass).addOnCompleteListener(this ,oncomplete);
+                startActivity(new Intent(this , Logger.class));
+
+            }
+            else {
+                Toast.makeText(this , "The passwords should match" ,Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else
+        {
+            Toast.makeText(this ,"Please input all the fields",Toast.LENGTH_SHORT).show();
+        }
 //        cm =(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
 //        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         Log.e("sam", " " + isConnected);
     }
-    private void getinfo()
+    private Boolean getinfo()
     {
+        Boolean passwordmatches = false;
         user = reg_username.getText().toString();
         pass = reg_password.getText().toString();
         confirm = confirm_password.getText().toString();
+        if(pass.equals(confirm))
+        {
+            passwordmatches =true;
+        }
+        return passwordmatches;
 
     }
 }
