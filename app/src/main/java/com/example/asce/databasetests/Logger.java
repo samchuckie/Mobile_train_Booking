@@ -66,7 +66,7 @@ public class Logger extends AppCompatActivity {
 
         String email = username.getText().toString();
         String pass = password.getText().toString();
-        if (TextUtils.isEmpty(email) == false && TextUtils.isEmpty(pass) == false) {
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
 
 
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

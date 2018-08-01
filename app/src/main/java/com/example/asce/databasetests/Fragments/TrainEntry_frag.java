@@ -119,33 +119,30 @@ public class TrainEntry_frag extends Fragment {
         @Override
         public void onClick(View v) {
 
+
             final String user_name = usersname.getText().toString();
             final int user_id =Integer.valueOf(userid.getText().toString());
             final int user_telephone = Integer.valueOf(usertelephone.getText().toString());
 
 
-            LNMExpress lnmExpress = new LNMExpress(
-                    darajavm.getBusinnesscode(),
-                    darajavm.getPasskey(),
-                    darajavm.getAmount(book.getPrice()),
-                    darajavm.getPartyA(),
-                    darajavm.getPartyB(),
-                    darajavm.getPhoneno(),
-                    darajavm.getCallbackurl(),
-                    darajavm.getAccountreference(),
-                    darajavm.getTransactiondec()
-            );
-            Log.e("sam", "The username is " + user_name);
-            Log.e("sam", "The id is " + user_id);
-            Log.e("sam", "The telephone is " + user_telephone);
-            Log.e("sam", "The price is " + book.getPrice());
+//            LNMExpress lnmExpress = new LNMExpress(
+//                    darajavm.getBusinnesscode(),
+//                    darajavm.getPasskey(),
+//                    darajavm.getAmount(book.getPrice()),
+//                    darajavm.getPartyA(),
+//                    darajavm.getPartyB(),
+//                    darajavm.getPhoneno(),
+//                    darajavm.getCallbackurl(),
+//                    darajavm.getAccountreference(),
+//                    darajavm.getTransactiondec()
+//            );
+
             setter(user_name, user_id, book.getPrice(), user_telephone);
-            getFragmentManager().popBackStackImmediate();
+//
 //            daraja.requestMPESAExpress(lnmExpress, new DarajaListener<LNMResult>() {
 //                        @Override
 //                        public void onResult(@NonNull LNMResult lnmResult) {
 //                            Log.e("sam", "descritpion" + lnmResult.ResponseDescription);
-//                            setter(user_name, user_id, book.getPrice(), user_telephone);
 //                        }
 //
 //                        @Override
@@ -154,6 +151,7 @@ public class TrainEntry_frag extends Fragment {
 //                        }
 //                    }
 //            );
+            getFragmentManager().popBackStackImmediate();
         }
     };
 

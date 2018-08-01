@@ -20,7 +20,22 @@ public class Home_fragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(Intent.ACTION_VIEW);
-            Uri geolocation= Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway%2C+CA");
+            String location="";
+            switch (v.getId())
+            {
+                case R.id.Nairobi:
+                    location = "geo:0,0?q=Nairobi +SGR+Terminus";
+                    break;
+                case R.id.Mombasa:
+                    location = "geo:0,0?q=Mombasa  +SGR+Terminus";
+                    break;
+                case R.id.Voi:
+                location = "geo:0,0?q=Voi+SGR+Station";
+                break;
+
+
+            }
+            Uri geolocation= Uri.parse(location);
             i.setData(geolocation);
             if (i.resolveActivity(getActivity().getPackageManager())!= null)
             {
@@ -43,6 +58,8 @@ public class Home_fragment extends Fragment {
         mombasa=getActivity().findViewById(R.id.Mombasa);
         voi=getActivity().findViewById(R.id.Voi);
         nairobi.setOnClickListener(mapper);
+        mombasa.setOnClickListener(mapper);
+        voi.setOnClickListener(mapper);
 
 
 

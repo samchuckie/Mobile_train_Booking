@@ -1,9 +1,6 @@
 package com.example.asce.databasetests;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,7 +61,6 @@ public class Register extends AppCompatActivity {
             else {
                 Toast.makeText(this , "The passwords should match" ,Toast.LENGTH_SHORT).show();
             }
-
         }
         else
         {
@@ -84,6 +80,7 @@ public class Register extends AppCompatActivity {
         {
             passwordmatches =true;
         }
+
         return passwordmatches;
 
     }

@@ -3,57 +3,47 @@ package com.example.asce.databasetests.ViewModel;
 import android.arch.lifecycle.ViewModel;
 
 public class darajaViewModel extends ViewModel {
-    private String consumerkey ="IUgqx9M5VSyo21ZX6oMUbIjJcZANdLxu";
-    private String consumesecret="F2KdwWh7HUh8K37c";
-    private String businnesscode = "174379";
-    private String passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     private String amount  ;
-    private String partyA = "254703318241";
-    private String partyB = "174379";
-    private String phoneno = "254703318241";
-    private String callbackurl = "http://mycallbackurl.com/checkout.php";
-    private String accountreference = "Samuel Account";
-    private String transactiondec = "Train Booking";
 
 
     public String getBusinnesscode() {
-        return businnesscode;
+        return "174379";
     }
 
     public String getPasskey() {
-        return passkey;
+        return "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     }
 
     public String getPartyA() {
-        return partyA;
+        return "254703318241";
     }
 
     public String getPartyB() {
-        return partyB;
+        return "174379";
     }
 
     public String getPhoneno() {
-        return phoneno;
+        return "254703318241";
     }
 
-    public String getCallbackurl() {
-        return callbackurl;
-    }
+//    public String getCallbackurl() {
+//        return callbackurl;
+//    }
 
     public String getAccountreference() {
-        return accountreference;
+        return "Samuel Account";
     }
 
     public String getTransactiondec() {
-        return transactiondec;
+        return "Train Booking";
     }
 
     public String getConsumerkey() {
-        return consumerkey;
+        return "IUgqx9M5VSyo21ZX6oMUbIjJcZANdLxu";
     }
 
     public String getConsumesecret() {
-        return consumesecret;
+        return "F2KdwWh7HUh8K37c";
     }
 
     public String getAmount(int price) {

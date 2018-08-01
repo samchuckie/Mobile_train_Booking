@@ -1,6 +1,5 @@
 package com.example.asce.databasetests;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,7 +14,6 @@ import com.example.asce.databasetests.ViewModel.CurrentTicker;
 import com.example.asce.databasetests.ViewModel.Datechecker_viewmodel;
 import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.example.asce.databasetests.ViewModel.darajaViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 
 public  class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView  ;
@@ -43,7 +41,7 @@ public  class Home extends AppCompatActivity {
                     break;
                 case R.id.checking_id:
                       switcher = new Tickets_frag();
-                      frag_home ="Ticket";;
+                      frag_home ="Ticket";
                     break;
                 case R.id.logout_id:
 //                    FirebaseAuth.getInstance().signOut();

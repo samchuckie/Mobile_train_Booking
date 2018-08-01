@@ -1,7 +1,7 @@
 package com.example.asce.databasetests.Fragments;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import com.example.asce.databasetests.R;
 import com.example.asce.databasetests.ViewModel.CurrentTicker;
 import com.example.asce.databasetests.ViewModel.TicketBooked;
-import com.example.asce.databasetests.ViewModel.booking_viewmodel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -36,7 +35,6 @@ public class Tickets_frag extends Fragment implements Ticketsadapter.ItemClickLi
     RecyclerView alltickets_rv;
     LinearLayoutManager linearLayoutManager;
     Ticketsadapter ticketsadapter;
-    private FirebaseUser user;
     private String userid;
     private DatabaseReference databaseReference;
     List<TicketBooked> tbb = new ArrayList<>();
@@ -58,8 +56,8 @@ public class Tickets_frag extends Fragment implements Ticketsadapter.ItemClickLi
         ticketsadapter = new Ticketsadapter(this);
         alltickets_rv.setLayoutManager(linearLayoutManager);
         alltickets_rv.setAdapter(ticketsadapter);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userid =user.getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userid = user.getUid();
         databaseReference= FirebaseDatabase.getInstance().getReference("UserTickets");
         databaseReference.child(userid).addChildEventListener(new ChildEventListener() {
             @Override
@@ -106,7 +104,6 @@ public class Tickets_frag extends Fragment implements Ticketsadapter.ItemClickLi
                 currentTicker.setTrainentry_id(dataSnapshot.getKey());
                 currentTicker.setPrice(todisplay.getPrice());
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frags_container, new TicketToDisplay(), "Booking").addToBackStack(null).commit();
-
             }
 
             @Override
@@ -116,13 +113,11 @@ public class Tickets_frag extends Fragment implements Ticketsadapter.ItemClickLi
         });
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class Tickets_async extends AsyncTask<TicketBooked, Void, TicketBooked> {
         @Override
         protected TicketBooked doInBackground(TicketBooked... ticketBookeds) {
-
-
-            TicketBooked ticketBooked =ticketBookeds[0];
-            return ticketBooked;
+            return ticketBookeds[0];
         }
 
         @Override
