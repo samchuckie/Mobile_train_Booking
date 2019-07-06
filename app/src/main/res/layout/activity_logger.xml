@@ -1,70 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Logger"
     android:orientation="vertical"
-    android:padding="56dp"
-    android:background="@drawable/my_bg"
+    android:padding="@dimen/sixteen_dp"
+    tools:background="@drawable/my_bg"
     >
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="108dp"
-        android:layout_height="108dp"
+        android:layout_width="@dimen/one_hundred_eight"
+        android:layout_height="@dimen/one_hundred_eight"
         android:layout_gravity="center"
         android:src="@drawable/trainfinal"
-
-
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Booking made easier"
+        android:text="@string/booking_made_easier"
         android:layout_gravity="center"
         android:textColor="@android:color/black"
-
+        android:textSize="@dimen/sixteen_dp"
         />
+
     <EditText
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
+        style="@style/basic_textview"
         android:id="@+id/username"
-        android:hint="E-mail"
-        android:textColorHint="@android:color/background_dark"
-        >
-
-    </EditText>
+        android:hint="@string/e_mail"
+        android:maxLines="1"
+        android:inputType="text"
+        />
     <EditText
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
+        style="@style/basic_textview"
         android:id="@+id/password"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:textColorHint="@android:color/background_dark"
-
-
-        >
-
-    </EditText>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/log_in"
-        android:text="log in"
-        android:onClick="logger"
-        android:layout_gravity="center"
-
         />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign up"
+        style="@style/basic_button"
+        android:id="@+id/log_in"
+        android:text="@string/log_in"
+        android:onClick="logger"
+        />
+    <Button
+        style="@style/basic_button"
+        android:text="@string/sign_up"
         android:id="@+id/reg_user"
         android:onClick="register"
-        android:layout_gravity="center"
 
         />
-
-
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asce.databasetests.Adapter.Ticketsadapter;
 import com.example.asce.databasetests.R;
 import com.example.asce.databasetests.ViewModel.CurrentTicker;
 import com.example.asce.databasetests.ViewModel.TicketBooked;

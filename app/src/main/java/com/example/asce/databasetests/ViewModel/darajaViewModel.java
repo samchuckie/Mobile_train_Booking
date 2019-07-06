@@ -2,6 +2,9 @@ package com.example.asce.databasetests.ViewModel;
 
 import android.arch.lifecycle.ViewModel;
 
+import static com.example.asce.databasetests.BuildConfig.Consumer_key;
+import static com.example.asce.databasetests.BuildConfig.Consumer_secret;
+
 public class darajaViewModel extends ViewModel {
     private String amount  ;
 
@@ -13,7 +16,6 @@ public class darajaViewModel extends ViewModel {
     public String getPasskey() {
         return "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     }
-
     public String getPartyA() {
         return "254703318241";
     }
@@ -29,7 +31,6 @@ public class darajaViewModel extends ViewModel {
 //    public String getCallbackurl() {
 //        return callbackurl;
 //    }
-
     public String getAccountreference() {
         return "Samuel Account";
     }
@@ -39,11 +40,13 @@ public class darajaViewModel extends ViewModel {
     }
 
     public String getConsumerkey() {
-        return "IUgqx9M5VSyo21ZX6oMUbIjJcZANdLxu";
+        // add your own consumer key
+        return Consumer_key;
     }
 
     public String getConsumesecret() {
-        return "F2KdwWh7HUh8K37c";
+        // add your own consumer secret
+        return Consumer_secret;
     }
 
     public String getAmount(int price) {

@@ -54,5 +54,4 @@ public class Entry {
         tomaps.put("phonenumber", phone);
         return tomaps;
     }
-
 }

@@ -76,7 +76,7 @@ public class TrainEntry_frag extends Fragment {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
                 Toast.makeText(getContext(), "TOKEN : " + accessToken.getAccess_token(), Toast.LENGTH_SHORT).show();
-                Log.e("sam" , "access token is " + accessToken.getAccess_token());
+                //Log.e("sam" , "access token is " + accessToken.getAccess_token());
             }
 
             @Override
@@ -109,17 +109,12 @@ public class TrainEntry_frag extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
-
                     }
-
                 });
-
     }
     View.OnClickListener mpesa_request = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-
             final String user_name = usersname.getText().toString();
             final int user_id =Integer.valueOf(userid.getText().toString());
             final int user_telephone = Integer.valueOf(usertelephone.getText().toString());
@@ -164,11 +159,9 @@ public class TrainEntry_frag extends Fragment {
         childUpdates.put(byear + "/" + bmonth + "/" +bday + "/" + book.getDeparture_station()
                 + "/" + book.getDestination_station() + "/" + book.getEconomical_status()+ "/"+seatnumber , postValues);
         databaseReference.updateChildren(childUpdates);
-
         Map<String ,Object> usermap = new HashMap<>() ;
         usermap.put("UserTickets/" + FirebaseAuth.getInstance().getCurrentUser().getUid() +"/" +  key , postValues);
         databaseReference.updateChildren(usermap);
         }
-
 }
 

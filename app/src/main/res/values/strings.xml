@@ -3,4 +3,19 @@
     <string name="general">Hello welcome to Tick-o. Aiming to make your booking much easier. We hope you enjoy our services.
         This a platform to enable to book,check and manage your booking all in one place. For any enquiries our contact information will be below. Have a nice day
     </string>
+    <string name="network_missing">Network error</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="booking_made_easier">Booking made easier</string>
+    <string name="input_e_mail">Input e-mail</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="input_password">Input password</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="stations">Stations</string>
+    <string name="station_image">Station image</string>
+    <string name="open_in_maps">Open in maps</string>
+    <string name="nairobi">Nairobi</string>
+    <string name="voi">Voi</string>
+    <string name="msa">Msa</string>
 </resources>

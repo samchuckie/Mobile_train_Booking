@@ -1,4 +1,4 @@
-package com.example.asce.databasetests.Fragments;
+package com.example.asce.databasetests.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.asce.databasetests.R;
@@ -15,7 +14,7 @@ import com.example.asce.databasetests.ViewModel.TicketBooked;
 import java.util.ArrayList;
 import java.util.List;
 
-class Ticketsadapter  extends RecyclerView.Adapter<Ticketsadapter.Viewholder>{
+public class Ticketsadapter  extends RecyclerView.Adapter<Ticketsadapter.Viewholder>{
     List<TicketBooked> tb = new ArrayList<>();
     public interface ItemClickListener {
         void onItemClickListener(String itemId);

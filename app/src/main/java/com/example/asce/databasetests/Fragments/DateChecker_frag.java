@@ -32,6 +32,9 @@ import java.util.Calendar;
 import static android.app.DatePickerDialog.*;
 
 public class DateChecker_frag extends Fragment implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
+
+    //TODO
+
     Spinner to_option,from_options;
     DatabaseReference firebaseDatabase;
     private booking_viewmodel book;
@@ -83,7 +86,6 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
         super.onStart();
         Log.e("sammer" , "Activity resumed");
         updateui();
-
     }
 
     @Override
@@ -146,10 +148,7 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
         book.setEconomical_status(economical_class);
         datechecker_viewmodel.queryeconomical(economical_class);
         updateui();
-
     }
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -164,16 +163,14 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
     {
         switch (id) {
             case R.id.first:
-                    economical_class = first_class.getText().toString();
+                economical_class = first_class.getText().toString();
                 Log.e("sam", "frist clasesese" + economical_class);
 
                 break;
             case R.id.second:
-                    economical_class = economy_class.getText().toString();
+                economical_class = economy_class.getText().toString();
                 Log.e("sam", "economical classsesdsfdsf" + economical_class);
-
                 break;
-
         }
     }
 
@@ -216,8 +213,8 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
             {
                 book.setPrice(datechecker_viewmodel.getNv());
             }
-
     }
+
     View.OnClickListener booking = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -234,12 +231,10 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
                             Log.e("sam", "" + dataSnapshot.getChildrenCount());
                             int seats= (int) dataSnapshot.getChildrenCount();
                             datechecker_viewmodel.setSeat_availabe(seats);
-
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
                         }
                     });
             if(datechecker_viewmodel.getSeat_availabe()>=datechecker_viewmodel.getMaximumseats())
@@ -251,7 +246,6 @@ public class DateChecker_frag extends Fragment implements AdapterView.OnItemSele
                 prices();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frags_container, new TrainEntry_frag(), "Booking").addToBackStack(null).commit();
             }
-
         }
     };
 

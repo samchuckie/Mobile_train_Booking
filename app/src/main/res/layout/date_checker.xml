@@ -7,23 +7,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginLeft="@dimen/padding_top"
     android:layout_marginRight="@dimen/padding_top"
-    tools:context=".Activties_old.Date_checker"
     android:orientation="vertical"
 
     >
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel Date"
+        android:layout_marginTop="@dimen/eight_dp"
+        />
+    <View
+        android:layout_width="80dp"
+        android:layout_height="2dp"
+        android:background="@drawable/rounded"
+        android:layout_marginBottom="@dimen/eight_dp"
+        />
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1"
+       android:layout_height="wrap_content"
        android:orientation="horizontal"
+       android:elevation="@dimen/eight_dp"
        >
 
    <TextView
        android:layout_width="0dp"
-       android:layout_height="match_parent"
+       android:layout_height="48dp"
        android:layout_weight="10"
-       android:text="DD/MM/YY"
+       android:text="Pick a date"
        android:textAlignment="center"
        android:gravity="center"
        android:id="@+id/datepiclerss"
@@ -36,18 +46,27 @@
           android:layout_weight="2"
           android:id="@+id/datepickericon"
           android:src="@drawable/ic_event_available_black_24dp"
-          android:background="@color/colorAccent"
 
           />
 
    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel Prices"
+        android:layout_marginTop="@dimen/eight_dp"
+        />
+    <View
+        android:layout_width="80dp"
+        android:layout_height="2dp"
+        android:background="@drawable/rounded"
+        />
 
    <LinearLayout
        style="@style/scheduler"
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:layout_weight="4"
-       android:background=" #eaf2f8  "
        android:orientation="vertical">
 
       <LinearLayout
@@ -55,40 +74,37 @@
           android:layout_height="0dp"
           android:layout_weight="1"
           android:orientation="horizontal"
-          >
+          tools:ignore="NestedWeights">
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="Stations"
+             style="@style/table_row"
+             android:text="@string/stations"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
 
              />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="Voi"
+             style="@style/table_row"
+             android:text="@string/voi"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
 
              />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="Msa" />
+             style="@style/table_row"
+             android:text="@string/msa"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
+             />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-
-             android:text="Nairobi" />
+             style="@style/table_row"
+             android:text="@string/nairobi"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
+             />
 
       </LinearLayout>
 
@@ -100,36 +116,26 @@
           android:orientation="horizontal">
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="Voi"
-
+             style="@style/table_row"
+             android:text="@string/voi"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
              />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="-" />
+             style="@style/table_row"
+             android:text="-"
+             />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
+             style="@style/table_row"
              android:id="@+id/msa-voi"
-             android:layout_weight="1"
-             android:gravity="center"
              android:text="1000" />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
+             style="@style/table_row"
              android:id="@+id/nairobi-voi"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="1000" />
+             android:text="1000"  />
 
       </LinearLayout>
 
@@ -143,33 +149,25 @@
           >
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:text="Msa" />
+             style="@style/table_row"
+             android:text="@string/msa"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"
+             />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
+             style="@style/table_row"
              android:id="@+id/voi-msa"
              android:text="1000" />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
+             style="@style/table_row"
              android:text="-" />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
+             style="@style/table_row"
              android:id="@+id/Nairobi-Msa"
-             android:layout_weight="1"
-             android:gravity="center"
+
              android:text="1000" />
 
       </LinearLayout>
@@ -188,38 +186,39 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:gravity="center"
-             android:text="Nairobi" />
+             android:text="@string/nairobi"
+             android:layout_margin="8dp"
+             android:background=" #eaf248"/>
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
+             style="@style/table_row"
              android:id="@+id/voi-nairobi"
-
              android:text="1000" />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
+             style="@style/table_row"
              android:id="@+id/msa-nairobi"
-
-             android:gravity="center"
              android:text="1000" />
 
          <TextView
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:gravity="center"
+             style="@style/table_row"
              android:text="-" />
 
       </LinearLayout>
 
    </LinearLayout>
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel class"
+        android:layout_marginTop="@dimen/eight_dp"
+        />
+    <View
+        android:layout_width="80dp"
+        android:layout_height="2dp"
+        android:background="@drawable/rounded"
+        android:layout_marginBottom="@dimen/eight_dp"
+        />
 
    <RadioGroup
        android:layout_width="match_parent"

@@ -16,32 +16,26 @@ import com.example.asce.databasetests.R;
 public class Home_fragment extends Fragment {
 
     TextView nairobi,mombasa,voi;
-    private View.OnClickListener mapper = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            String location="";
-            switch (v.getId())
-            {
-                case R.id.Nairobi:
-                    location = "geo:0,0?q=Nairobi +SGR+Terminus";
-                    break;
-                case R.id.Mombasa:
-                    location = "geo:0,0?q=Mombasa  +SGR+Terminus";
-                    break;
-                case R.id.Voi:
-                location = "geo:0,0?q=Voi+SGR+Station";
+    private View.OnClickListener mapper = v -> {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        String location="";
+        switch (v.getId())
+        {
+            case R.id.Nairobi:
+                location = "geo:0,0?q=Nairobi +SGR+Terminus";
                 break;
-
-
-            }
-            Uri geolocation= Uri.parse(location);
-            i.setData(geolocation);
-            if (i.resolveActivity(getActivity().getPackageManager())!= null)
-            {
-                startActivity(i);
-            }
-
+            case R.id.Mombasa:
+                location = "geo:0,0?q=Mombasa  +SGR+Terminus";
+                break;
+            case R.id.Voi:
+            location = "geo:0,0?q=Voi+SGR+Station";
+            break;
+        }
+        Uri geolocation= Uri.parse(location);
+        i.setData(geolocation);
+        if (i.resolveActivity(getActivity().getPackageManager())!= null)
+        {
+            startActivity(i);
         }
     };
 
@@ -60,8 +54,6 @@ public class Home_fragment extends Fragment {
         nairobi.setOnClickListener(mapper);
         mombasa.setOnClickListener(mapper);
         voi.setOnClickListener(mapper);
-
-
 
     }
 }

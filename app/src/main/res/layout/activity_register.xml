@@ -1,65 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register"
     android:orientation="vertical"
-    android:padding="56dp"
-    android:background="@drawable/my_bg"
+    android:padding="@dimen/sixteen_dp"
+    tools:background="@drawable/my_bg"
     >
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="108dp"
-        android:layout_height="108dp"
+        android:layout_width="@dimen/one_hundred_eight"
+        android:layout_height="@dimen/one_hundred_eight"
         android:layout_gravity="center"
         android:src="@drawable/trainfinal"
-
-
         />
+
     <EditText
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
+        style="@style/basic_textview"
         android:id="@+id/new_username"
-        android:hint="e-mail"
-        android:textColorHint="@android:color/background_dark"
+        android:hint="@string/input_e_mail"
+        />
 
-        >
-
-    </EditText>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/basic_textview"
         android:id="@+id/new_password"
-        android:hint="password"
+        android:hint="@string/input_password"
         android:inputType="textPassword"
-        android:textColorHint="@android:color/background_dark"
-        >
+        />
 
-    </EditText>
     <EditText
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
+        style="@style/basic_textview"
         android:id="@+id/confirm_password"
-        android:hint="Confirm passworm"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
-        android:textColorHint="@android:color/background_dark"
+        />
 
-        >
-
-    </EditText>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/basic_button"
         android:id="@+id/sign_newuser"
-        android:text="Sign up"
+        android:text="@string/sign_up"
         android:onClick="register_user"
         android:layout_gravity="center"
-
-
         />
-
-
-
 </LinearLayout>
